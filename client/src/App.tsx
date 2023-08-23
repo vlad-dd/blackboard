@@ -6,7 +6,7 @@ const App = () => {
   const { router } = useApplicationRouterWidget();
   return (
     <>
-      <Suspense children={<RouterProvider router={router} />} fallback={<div>Loading...</div>} />
+      <Suspense children={<RouterProvider router={router} />} fallback={<h1>Loading...</h1>} />
     </>
   )
 }
