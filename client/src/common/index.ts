@@ -1,0 +1,1 @@
+export { default as DesignStar } from "./design_star"; 

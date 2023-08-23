@@ -1,0 +1,1 @@
+export const buildHeadersTokenObject = (token: any) => ({ headers: { 'Authorization': 'Bearer ' + token } });
