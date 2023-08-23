@@ -7,7 +7,7 @@ export const instanse = axios.create({
 
 export const API = {
     register(credentials: any) {
-        return instanse.post("auth/register", { ...credentials })
+        return instanse.post("auth/register", { ...credentials });
     },
 
     login(credentials: any) {
@@ -17,7 +17,7 @@ export const API = {
         return instanse.get("/profile", buildHeadersTokenObject(token));
     },
     getAllPlannerCards(token: any) {
-        return instanse.get("/cards", buildHeadersTokenObject(token))
+        return instanse.get("/cards", buildHeadersTokenObject(token));
     },
     createPlannerCard(token: any, userInput: any) {
         return instanse.post("/cards", userInput, buildHeadersTokenObject(token));
@@ -26,6 +26,6 @@ export const API = {
         return instanse.patch("/cards", config, buildHeadersTokenObject(token) );
     },
     deletePlannerCard(token: any, id: string) {
-        return instanse.delete("/cards", { headers: { 'Authorization': 'Bearer ' + token }, data: { id } })
+        return instanse.delete("/cards", { headers: { 'Authorization': 'Bearer ' + token }, data: { id } });
     }
 };
