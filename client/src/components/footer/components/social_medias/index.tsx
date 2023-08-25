@@ -1,5 +1,11 @@
-import { BLACKBOARD_SOCIAL_MEDIAS, SOCIAL_MEDIAS_DESCRIPTION, SOCIAL_MEDIAS_TITLE } from '../../constants';
+import React from 'react';
 import { Media } from './components';
+import { ISocialMedias } from '../../interfaces';
+import {
+    BLACKBOARD_SOCIAL_MEDIAS,
+    SOCIAL_MEDIAS_DESCRIPTION,
+    SOCIAL_MEDIAS_TITLE
+} from '../../constants';
 import {
     StyledFooterSocialMediaContainer,
     StyledFooterSocialMediaWrapper,
@@ -15,7 +21,7 @@ const SocialMedias = () => {
                 {SOCIAL_MEDIAS_DESCRIPTION}
             </StyledSocialMediaDescription>
             <StyledFooterSocialMediaContainer>
-                {BLACKBOARD_SOCIAL_MEDIAS.map(({ id, href, media }: any) => <Media id={id} href={href} media={media} />)}
+                {BLACKBOARD_SOCIAL_MEDIAS.map((props: ISocialMedias) => <Media {...props} />)}
             </StyledFooterSocialMediaContainer>
         </StyledFooterSocialMediaWrapper>
     )

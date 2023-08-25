@@ -1,9 +1,11 @@
+import React from 'react';
+import { COPYRIGHT_MESSAGE } from '../../constants';
 import { StyledCopyrightWrapper } from '../../styled';
 
 const Copyright = () => {
     return (
         <StyledCopyrightWrapper>
-            @2023 BlackBoard LLC, All Rights Reserved.
+            {COPYRIGHT_MESSAGE}
         </StyledCopyrightWrapper>
     )
 }

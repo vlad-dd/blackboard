@@ -1,3 +1,4 @@
+import React from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { SUBSCRIPTION_DESCRIPTION, SUBSCRIPTION_TITLE } from '../../constants';

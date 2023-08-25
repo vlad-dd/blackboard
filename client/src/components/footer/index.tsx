@@ -1,3 +1,4 @@
+import React from 'react';
 import { BlackBoardServices, Copyright, SocialMedias, Subscription } from './components';
 import { StyledFooterContentContainer, StyledFooterWrapper } from './styled'
 

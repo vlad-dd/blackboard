@@ -7,11 +7,7 @@ import {
 } from './styled';
 
 const Dashboard = () => {
-    const { cards, error } = useDashboardWidget();
-
-    if(!!error) {
-        return <div>{JSON.stringify(error)}</div>
-    };
+    const { cards } = useDashboardWidget();
 
     return (
         <>

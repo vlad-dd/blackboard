@@ -1,6 +1,7 @@
+import React from 'react'
 import { StyledFooterSocialMedia } from '../../../../styled'
 
-const Media = ({ id, href, media }: any) => {
+const Media = ({ id, href, media }) => {
     return (
         <StyledFooterSocialMedia key={id} href={href}>
             {media}
@@ -8,4 +9,4 @@ const Media = ({ id, href, media }: any) => {
     )
 }
 
-export default Media
+export default Media;

@@ -1,8 +1,10 @@
+import React from "react";
+
 export const SUBSCRIPTION_TITLE = "Subscribe";
 export const SOCIAL_MEDIAS_TITLE = "BlackBoard";
 export const SUBSCRIPTION_DESCRIPTION = "Enter your e-mail to get notified about our news solutions";
 export const SOCIAL_MEDIAS_DESCRIPTION = "It's all about your planning.";
-
+export const COPYRIGHT_MESSAGE = "@2023 BlackBoard LLC, All Rights Reserved.";
 export const BLACKBOARD_SERVICES = [
     { id: 1, title: "Hub", services: ["Careers", "Our Merch", "BlackBoard News", "Service"] },
     { id: 2, title: "Products", services: ["Consumer Care", "Pricing", "Cloud", "BlackBoard USA", "BlackBoard Ukraine"] },

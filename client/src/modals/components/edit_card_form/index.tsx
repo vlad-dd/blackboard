@@ -7,6 +7,7 @@ import { setPlannerCards, setUpdateNotification } from "../../../store/reducers/
 import { editCardModalStateSelector, plannerCardsSelector } from "../../../store/selectors";
 import { API } from "../../../api";
 import { closeEditCardInformationFormModal } from "../../../store/reducers/modals/edit_card_information_form";
+import { closeApplicationAlertModal, showApplicationAlertModal } from "../../../store/reducers/popups/application_alert";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -43,11 +44,15 @@ const EditCardFormModal = () => {
     const saveEditPlannerCard = async () => {
         try {
             await API.updatePlannerCard(window.localStorage.getItem("token"), { ...cards.find(({ _id }) => _id === selectedCardId), task, description });
-            dispatch(setUpdateNotification("Planner card information was successfully updated!"));
+            dispatch(setUpdateNotification("Success"));
+            dispatch(showApplicationAlertModal({ message: "Planner card information was successfully updated!", role: "success" }))
 
         } catch (error) {
-            dispatch(setUpdateNotification("There was an error while editing this planner card."))
+           console.log("error")
         }
+         finally{
+            setTimeout(() => dispatch(closeApplicationAlertModal()), 1500);
+         }
     }
 
     return (

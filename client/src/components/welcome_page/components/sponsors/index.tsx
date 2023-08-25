@@ -1,6 +1,11 @@
+import React from 'react';
 import { useSponsorsWidget } from './use-sponsors-widget';
 import { SPONSORS_TITLE } from '../../constants';
-import { SponsorsTitle, StyledSponsorsContainer, StyledSponsorsWrapper } from '../../styled'
+import {
+    SponsorsTitle,
+    StyledSponsorsContainer,
+    StyledSponsorsWrapper
+} from '../../styled'
 
 const Sponsors = () => {
     const { sponsors } = useSponsorsWidget();

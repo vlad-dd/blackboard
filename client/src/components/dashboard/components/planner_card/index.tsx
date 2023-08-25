@@ -23,6 +23,7 @@ import { API } from '../../../../api';
 import { useDispatch } from 'react-redux';
 import { setUpdateNotification } from '../../../../store/reducers/planner-cards';
 import { openEditCardInformationFormModal, saveSelectedCardId } from '../../../../store/reducers/modals/edit_card_information_form';
+import { closeApplicationAlertModal, showApplicationAlertModal } from '../../../../store/reducers/popups/application_alert';
 
 const StyledMenu = styled((props: MenuProps) => (
     <Menu
@@ -80,9 +81,14 @@ const PlannerCard = ({ _id, task, description, createdAt }: any) => {
     const deletePlannerCard = async (id: any) => {
         try {
             await API.deletePlannerCard(window.localStorage.getItem("token"), id);
-            dispatch(setUpdateNotification("Planner card was deleted successfully!"))
+            dispatch(setUpdateNotification("Success"));
+            dispatch(showApplicationAlertModal({ message: "Planner card was deleted successfully!", role: "success" }))
         } catch (error) {
             console.log("error")
+            dispatch(showApplicationAlertModal({ message: "You are not able to delete this planner card!", role: "error" }))
+        }
+        finally {
+            setTimeout(() => dispatch(closeApplicationAlertModal()), 1500)
         }
     }
 
@@ -132,9 +138,6 @@ const PlannerCard = ({ _id, task, description, createdAt }: any) => {
                         </MenuItem>
                     </StyledMenu>
                 </div>
-                {/* <StyledDeleteIcon
-                    onClick={() => deletePlannerCard(_id)}
-                /> */}
             </div>
             <StyledCardDescription>{description}</StyledCardDescription>
             <StyledCardDate>
