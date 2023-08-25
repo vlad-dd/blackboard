@@ -1,6 +1,20 @@
 import React, { createContext, useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 
+interface Theme {
+    body: string;
+    fontColor: string;
+}
+
+interface ThemeContextProviderProps {
+    children: React.ReactNode;
+  }
+
+export interface ThemeContextType {
+    theme: boolean;
+    toggleTheme: () => void;
+}
+
 const lightTheme = {
     body: "white",
     fontColor: "black"
@@ -11,11 +25,11 @@ const darkTheme = {
     fontColor: "whitesmoke"
 }
 
-export const ThemeContext: any = createContext(null);
+export const ThemeContext = createContext<ThemeContextType | null>(null);
 
-export const ThemeContextProvider = ({ children }: { children: JSX.Element }) => {
+export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({ children }) => {
     const getMode = () => {
-        // @ts-ignore
+        //@ts-ignore
         return JSON.parse(localStorage.getItem("theme")) || false;
     }
     const [theme, setTheme] = useState(getMode);
@@ -23,7 +37,7 @@ export const ThemeContextProvider = ({ children }: { children: JSX.Element }) =>
     const toggleTheme = () => {
         setTheme((prev: boolean) => !prev)
     };
-    
+
     useEffect(() => {
         localStorage.setItem("theme", JSON.stringify(theme))
     }, [theme]);

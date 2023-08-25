@@ -1,7 +1,8 @@
 import React from 'react'
+import { IAuthForm } from '../interfaces';
 import { StyledActionTitle, StyledFormWrapper } from '../styled';
 
-const Form = ({ title, children }: any) => {
+const Form = ({ title, children }: IAuthForm) => {
     return (
         <StyledFormWrapper>
             <StyledActionTitle>

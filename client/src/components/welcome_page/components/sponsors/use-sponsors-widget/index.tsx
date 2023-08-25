@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { SPONSORS } from "../../../constants"
 import { StyledSponsorsContainerItem } from "../../../styled"
 

@@ -5,5 +5,5 @@ import { reducer as editCardInformationFormModal } from "./edit_card_information
 export const MODALS_REDUCER =  {
     cardFormModalSlice,
     userProfileModalSlice,
-    editCardInformationFormModal
+    editCardInformationFormModal,
 };

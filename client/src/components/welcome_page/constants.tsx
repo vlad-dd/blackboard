@@ -1,6 +1,7 @@
+import React from "react";
+
 export const APPLICATION_NAME = "Blackboard & Notes";
 export const APPLICATION_DESCRIPTION = "Colorful sticky notes, lists and boards!";
-// export const WELCOME_PAGE_BACKGROUND_IMAGE = "https://s3-alpha-sig.figma.com/img/456b/24b9/32bc57ac8f15e471325f9bbfae17cd55?Expires=1691366400&Signature=iJs-c6FtFwKMpdKggKndq97vLxBS1gMqEZ1AX7XAUyJufJ2F7GAn~cl0hnWugrWKQxx55LkHXl4UkJIhIBXqtAJfOta00p-oeSwuuPjMJ2w5t3yjhAeZ24BQMvJp9518OMOciUGLIFbk52BRmPtZuxcOjHUviMPKAraq~6JzHZBg3GyKbXsRxJG06rUZSbbP03EtPbhKP9Ad2A-K3uf4TJcB3~ncrhEVsWlP7KX7X8dM5in857NLqwGWBICjTnEQ8~--VUxXWrLzcTQaFL0xP10Cl76sBBvFE~7TIMlpAQT6rDAN52Qcl7CPaqTEthw7eRYtKsiXf~i~IVqnGxvWhw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4";
 
 export const SPONSORS_TITLE = "Trusted by more than 50,000 customers globally";
 

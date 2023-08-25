@@ -2,8 +2,7 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { Root, Dashboard } from "../../components";
 import WelcomePage from "../../components/welcome_page";
-import { Registration } from "../../components/auth";
-import Login from "../../components/auth/login";
+import { Registration, Login } from "../../components/auth";
 
 export const useApplicationRouterWidget = () => {
     const router = createBrowserRouter([

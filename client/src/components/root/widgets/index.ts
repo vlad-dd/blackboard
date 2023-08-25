@@ -1,0 +1,1 @@
+export { default as useRootWidget } from "./use-root-widget";

@@ -1,0 +1,1 @@
+export { default as DeniedAccess } from "./denied_access";

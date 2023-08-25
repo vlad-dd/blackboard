@@ -4,9 +4,9 @@ import { CardFormModal, EditCardFormModal, UserProfileModal } from './components
 const Modals = () => {
   return (
     <>
-        <CardFormModal />
-        <EditCardFormModal />
-        <UserProfileModal />
+      <CardFormModal />
+      <EditCardFormModal />
+      <UserProfileModal />
     </>
   )
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyledCircles } from '../../styled'
 
 const Circles = () => {

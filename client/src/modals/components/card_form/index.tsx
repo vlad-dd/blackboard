@@ -3,9 +3,10 @@ import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeCardFormModal } from "../../../store/reducers/modals/card_form";
-import { setPlannerCards, setUpdateNotification } from "../../../store/reducers/planner-cards";
+import { setUpdateNotification } from "../../../store/reducers/planner-cards";
 import { cardFormModalStateSelector } from "../../../store/selectors";
 import { API } from "../../../api";
+import { closeApplicationAlertModal, showApplicationAlertModal } from "../../../store/reducers/popups/application_alert";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -33,16 +34,20 @@ const CardFormModal = () => {
     const savePlannerCardToDB = async () => {
         try {
             await API.createPlannerCard(window.localStorage.getItem("token"), { task: title, description });
-            dispatch(setUpdateNotification("Planner card was created!"))
+            dispatch(setUpdateNotification("Success"));
+            dispatch(showApplicationAlertModal({ message: "Planner card was created!", role: "success" }));
         } catch (error) {
             console.log("error", error)
+        }
+        finally {
+            setTimeout(() => dispatch(closeApplicationAlertModal()), 1500);
         }
     }
 
     useEffect(() => {
         setTitle("");
         setDescription("");
-    }, [isOpen])
+    }, [isOpen]);
 
     return (
         <Modal
@@ -66,21 +71,21 @@ const CardFormModal = () => {
                     label="Description"
                     onChange={({ target: { value } }) => setDescription(value)}
                 />
-                <Button 
-                  disabled={!title}
-                  onClick={() => {
-                    const day = date.getDate();
-                    const month = date.getMonth() + 1;
-                    const year = date.getFullYear();
-                    const currentDate = `${day}-${month}-${year}`;
-                    savePlannerCardToDB()
-                    // dispatch(setPlannerCards({ id: crypto.randomUUID(), title, description, currentDate }));
-                    dispatch(closeCardFormModal());
-                }} variant="contained">
+                <Button
+                    disabled={!title}
+                    onClick={() => {
+                        const day = date.getDate();
+                        const month = date.getMonth() + 1;
+                        const year = date.getFullYear();
+                        const currentDate = `${day}-${month}-${year}`;
+                        savePlannerCardToDB()
+                        // dispatch(setPlannerCards({ id: crypto.randomUUID(), title, description, currentDate }));
+                        dispatch(closeCardFormModal());
+                    }} variant="contained">
                     Create
                 </Button>
             </Box>
-        </Modal>
+        </Modal >
     )
 }
 

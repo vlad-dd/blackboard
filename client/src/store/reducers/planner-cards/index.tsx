@@ -1,13 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 interface IinitialState {
     cards: any,
-    updateNotification: any
+    updateObserver: any
 }
 
 export const initialState: IinitialState = {
     cards: [],
-    updateNotification: { message: "" }
+    updateObserver: { message: "" }
 };
 
 const plannerCardsSlice = createSlice({
@@ -18,8 +17,7 @@ const plannerCardsSlice = createSlice({
             return { ...state, cards: [...payload]};
         },
         setUpdateNotification: (state, { payload }) => {
-            console.log("payload", payload)
-            return { ...state, updateNotification: { message: payload }};
+            return { ...state, updateObserver: { message: payload }};
         }
     }
 });

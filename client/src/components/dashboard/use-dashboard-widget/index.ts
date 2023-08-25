@@ -5,9 +5,10 @@ import { saveAuthUser } from "../../../store/reducers/user";
 import { API } from "../../../api";
 import { setPlannerCards } from "../../../store/reducers/planner-cards";
 import { getToken } from "../../../utils";
+import { setGlobalError } from "../../../store/reducers/global-error";
 
 export const useDashboardWidget = () => {
-    const { cards, updateNotification } = useSelector(plannerCardsSelector);
+    const { cards, updateObserver } = useSelector(plannerCardsSelector);
     const dispatch = useDispatch();
     const [error, setError] = useState<any>(null);
 
@@ -34,11 +35,14 @@ export const useDashboardWidget = () => {
             } catch (error) {
                 setError(error)
             }
-        })()
-    }, [updateNotification]);
+        })();
+    }, [updateObserver]);
+
+    useEffect(() => {
+       if(!!error) dispatch(setGlobalError(error))
+    }, [error])
 
     return {
         cards,
-        error
     };
 }
