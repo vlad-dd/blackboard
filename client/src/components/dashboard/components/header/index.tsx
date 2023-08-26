@@ -1,3 +1,7 @@
+import React from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { openUserProfileModal } from '../../../../store/reducers/modals/user_profile';
+import { authUserSelector } from '../../../../store/selectors';
 import { DesignStar } from '../../../../common'
 import { useListOptionsWidget } from './widgets';
 import { MenuDrawer, MenuButton } from './components';
@@ -8,10 +12,6 @@ import {
     StyledDashboardTitle,
     StyledUserAvatar
 } from './styled';
-import React from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { openUserProfileModal } from '../../../../store/reducers/modals/user_profile';
-import { authUserSelector } from '../../../../store/selectors';
 
 const DashboardHeader = () => {
     const dispatch = useDispatch();

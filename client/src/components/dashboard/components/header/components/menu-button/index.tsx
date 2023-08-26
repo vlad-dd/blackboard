@@ -1,15 +1,10 @@
+import React from 'react';
 import { Button, Menu, MenuItem } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate } from 'react-router-dom';
-import { removeItemFromLocalStorage } from '../../../../../../utils';
+import { useMenuOptionsWidget } from '../../widgets';
 
 const MenuButton = ({ open, handleClick, anchorEl, handleClose, toggleDrawer }: any) => {
-    const navigate = useNavigate();
-    const logOut = () => {
-        removeItemFromLocalStorage("token");
-        handleClose();
-        navigate("/login");    
-    };
+    const { logOut } = useMenuOptionsWidget(handleClose);
 
     return (
         <>
