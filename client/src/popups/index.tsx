@@ -1,10 +1,10 @@
 import React from "react";
-import { AlertsModal } from "./components";
+import { AlertsPopup } from "./components";
 
 const Popups = () => {
     return (
         <>
-        <AlertsModal /> 
+        <AlertsPopup /> 
         </>
     );
 }

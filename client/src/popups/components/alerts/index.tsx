@@ -3,7 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { applicationAlertStateSelector } from '../../../store/selectors';
 
-const AlertsModal = () => {
+const AlertsPopup = () => {
     const { isOpen, message, role } = useSelector(applicationAlertStateSelector);
     return (
         <Snackbar open={isOpen} autoHideDuration={6000}>
@@ -14,4 +14,4 @@ const AlertsModal = () => {
     )
 };
 
-export default AlertsModal;
+export default AlertsPopup;

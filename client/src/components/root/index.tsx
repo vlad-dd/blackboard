@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router';
 import { DeniedAccess } from '../../global/errors';
+import { GLOBAL_APPLICATION_ROUTES } from '../../global/routes';
 import { getToken } from '../../utils';
 import Modals from '../../modals';
 import Popups from '../../popups';
@@ -9,10 +10,10 @@ import { useRootWidget } from './widgets';
 import { GLOBAL_ERROR_MESSAGE } from './constants';
 
 const Root = () => {
-  const { hasGlobalError } = useRootWidget();
+  const { hasGlobalError, navigate } = useRootWidget();
 
   if (!getToken()) {
-    return <DeniedAccess />;
+    navigate(GLOBAL_APPLICATION_ROUTES.LOGIN);
   };
 
   if(hasGlobalError){

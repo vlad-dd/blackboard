@@ -7,11 +7,11 @@ export const StyledPlannerCardWrapper = styled.div`
   height: 30vh;
   width: 300px;
   display: flex;
-  background: #B388FF;
-  flex-direction: column;
   color: black;
-  gap: 24px;
-  padding: 20px;
+  flex-direction: column;
+  background: #B388FF;
+  border-radius: 8px;
+  padding: 16px;
   overflow-wrap: break-word;
 `;
 
@@ -21,18 +21,18 @@ export const StyledCardCategory = styled.div`
 `;
 
 export const StyledCardDescription = styled.div`
-  font-family: Inter;
-  font-size: 1.1rem;
-  font-style: normal;
-  line-height: 26px;
+  flex: 1;
+  overflow: hidden;
+  padding: 1.5px;
+  margin-top: 8px;
 `;
 
 export const StyledCardDate = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  position: relative;
-  bottom: -13vh;
+  padding: 3px;
+  text-align: center;
 `;
 
 export const StyledDeleteIcon = styled(DeleteIcon)`
@@ -74,5 +74,6 @@ export const StyledPlannerCardHeader = styled.div`
 `;
 
 export const StyledMoreVertIcon = styled(MoreVertIcon)`
+  fill: #484848;
   cursor: pointer;
 `;
