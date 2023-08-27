@@ -40,7 +40,7 @@ export const useDashboardWidget = () => {
 
     useEffect(() => {
        if(!!error) dispatch(setGlobalError(error))
-    }, [error])
+    }, [error]);
 
     return {
         cards,

@@ -1,5 +1,6 @@
 import React from 'react';
 import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
+import { dateFormatter } from '../../../../utils';
 import { PlannerCardMenuOptions } from './components';
 import { IPlannerCard } from './interfaces';
 import {
@@ -17,10 +18,12 @@ const PlannerCard = ({ _id, task, description, createdAt }: IPlannerCard) => {
                 <StyledCardCategory>{task}</StyledCardCategory>
                 <PlannerCardMenuOptions selectedCardId={_id} />
             </StyledPlannerCardHeader>
-            <StyledCardDescription>{description}</StyledCardDescription>
+            <StyledCardDescription>
+                {description}
+            </StyledCardDescription>
             <StyledCardDate>
                 <CalendarMonthTwoToneIcon />
-                {createdAt}
+                {dateFormatter(createdAt)}
             </StyledCardDate>
         </StyledPlannerCardWrapper>
     )

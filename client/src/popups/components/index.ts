@@ -1,1 +1,1 @@
-export { default as AlertsModal } from "./alerts";
+export { default as AlertsPopup } from "./alerts";
