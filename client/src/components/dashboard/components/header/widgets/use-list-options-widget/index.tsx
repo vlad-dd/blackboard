@@ -38,7 +38,7 @@ const useListOptionsWidget = () => {
         >
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding onClick={(el: any) => console.log(text)}>
+                    <ListItem disabled key={text} disablePadding onClick={(el: any) => console.log(text)}>
                         <ListItemButton>
                             <ListItemIcon>
                                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -51,7 +51,7 @@ const useListOptionsWidget = () => {
             <Divider />
             <List>
                 {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                    <ListItem disabled key={text} disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
                                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
