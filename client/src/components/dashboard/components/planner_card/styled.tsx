@@ -18,6 +18,8 @@ export const StyledPlannerCardWrapper = styled.div`
 export const StyledCardCategory = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
+  white-space: normal;
+  max-width: 90%;
 `;
 
 export const StyledCardDescription = styled.div`
@@ -25,12 +27,13 @@ export const StyledCardDescription = styled.div`
   overflow: hidden;
   padding: 1.5px;
   margin-top: 8px;
+  overflow: scroll;
 `;
 
 export const StyledCardDate = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   padding: 3px;
   text-align: center;
 `;

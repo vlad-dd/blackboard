@@ -8,6 +8,7 @@ import { editCardModalStateSelector, plannerCardsSelector } from "../../../store
 import { API } from "../../../api";
 import { closeEditCardInformationFormModal } from "../../../store/reducers/modals/edit_card_information_form";
 import { closeApplicationAlertModal, showApplicationAlertModal } from "../../../store/reducers/popups/application_alert";
+import { StyledCardHeaderTitle } from "../styled";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -30,7 +31,6 @@ const EditCardFormModal = () => {
     const dispatch = useDispatch();
     const [task, setTask] = useState("");
     const [description, setDescription] = useState("");
-    const [date] = useState(new Date());
 
     useEffect(() => {
         if(cards.length > 0) {
@@ -51,6 +51,7 @@ const EditCardFormModal = () => {
            console.log("error")
         }
          finally{
+            dispatch(closeEditCardInformationFormModal());
             setTimeout(() => dispatch(closeApplicationAlertModal()), 1500);
          }
     }
@@ -61,34 +62,23 @@ const EditCardFormModal = () => {
             onClose={() => dispatch(closeEditCardInformationFormModal())}
         >
             <Box sx={style}>
-                <Typography style={{ color: "black" }} id="modal-modal-title" variant="h6" component="h2">
+                <StyledCardHeaderTitle variant="h6">
                     Edit card information
-                </Typography>
+                </StyledCardHeaderTitle>
                 <TextField
-                    id="outlined-error"
                     label="Title"
                     value={task}
                     onChange={({ target: { value } }) => setTask(value)}
                 />
                 <TextField
                     multiline
-                    id="outlined-error"
                     label="Description"
                     value={description}
                     onChange={({ target: { value } }) => setDescription(value)}
                 />
                 <Button 
-                  disabled={!task}
-                  onClick={() => {
-                    const day = date.getDate();
-                    const month = date.getMonth() + 1;
-                    const year = date.getFullYear();
-                    const currentDate = `${day}-${month}-${year}`;
-                    // savePlannerCardToDB()
-                    saveEditPlannerCard();
-                    // dispatch(setPlannerCards({ id: crypto.randomUUID(), title, description, currentDate }));
-                    dispatch(closeEditCardInformationFormModal());
-                }} variant="contained">
+                  disabled={!task || description.length > 221 || task.length > 52}
+                  onClick={saveEditPlannerCard} variant="contained">
                     Edit
                 </Button>
             </Box>

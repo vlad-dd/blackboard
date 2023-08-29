@@ -16,7 +16,7 @@ const MenuButton = ({ open, handleClick, anchorEl, handleClose, toggleDrawer }: 
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem disabled onClick={handleClose}>
+                <MenuItem onClick={handleClose}>
                     <span onClick={toggleDrawer("left", true)}>Dashboard</span>
                 </MenuItem>
                 <MenuItem disabled onClick={handleClose}>Settings</MenuItem>

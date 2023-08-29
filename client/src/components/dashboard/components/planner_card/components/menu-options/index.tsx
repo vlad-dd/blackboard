@@ -19,7 +19,11 @@ const PlannerCardMenuOptions = ({ selectedCardId }) => {
     } = usePlannerCardWidget(selectedCardId);
     return (
         <>
-            <StyledMoreVertIcon onClick={(e: any) => openPlannerCardOptionsMenu(e)} />
+            <IconButton>
+                <StyledMoreVertIcon
+                    onClick={(e: any) => openPlannerCardOptionsMenu(e)}
+                />
+            </IconButton>
             <StyledPlannerCardOptionsMenu
                 anchorEl={anchorEl}
                 open={open}
