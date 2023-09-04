@@ -8,9 +8,15 @@ import { getToken } from "../../../utils";
 import { setGlobalError } from "../../../store/reducers/global-error";
 
 export const useDashboardWidget = () => {
-    const { cards, updateObserver } = useSelector(plannerCardsSelector);
     const dispatch = useDispatch();
+    const { cards, updateObserver, selectedSectionId } = useSelector(plannerCardsSelector);
+    const [filteredSection, setFilteredSection] = useState<any>();
     const [error, setError] = useState<any>(null);
+
+    useEffect(() => {
+        const filteredCard = cards?.find(({ _id }) => _id === selectedSectionId);
+        setFilteredSection(filteredCard);
+    }, [selectedSectionId, cards]);
 
     useEffect(() => {
         (async () => {
@@ -43,6 +49,7 @@ export const useDashboardWidget = () => {
     }, [error]);
 
     return {
-        cards,
+        filteredSection,
+        selectedSectionId,
     };
 }

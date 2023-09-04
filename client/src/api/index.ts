@@ -25,7 +25,10 @@ export const API = {
     updatePlannerCard (token: any, config: any) {
         return instanse.patch("/cards", config, buildHeadersTokenObject(token) );
     },
-    deletePlannerCard(token: any, id: string) {
-        return instanse.delete("/cards", { headers: { 'Authorization': 'Bearer ' + token }, data: { id } });
+    deletePlannerCard(token: any, sectionId: string, cardId: string) {
+        return instanse.delete("/cards", { headers: { 'Authorization': 'Bearer ' + token }, data: { sectionId, cardId } });
+    },
+    deleteSection(token: any, selectedSectionId: string) {
+        return instanse.delete("/cards/section", { headers: { 'Authorization': 'Bearer ' + token }, data: { selectedSectionId } });
     }
 };

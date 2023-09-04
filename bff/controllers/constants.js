@@ -12,6 +12,10 @@ export const PLANNER_CARD_UPDATING_ERROR = "Cant update planner card.";
 export const PLANNER_CARD_DELETING_SUCCESS = "Planner card was successfully deleted!";
 export const PLANNER_CARD_DELETING_ERROR = "Ooops, there was a problem with deleting this planner card.";
 
+//Section
+export const SECTION_DELETING_SUCCESS = "Section was successfully deleted!";
+export const SECTION_DELETING_ERROR = "Ooops, there was a problem with deleting this section.";
+
 //User
 export const UNEXSITED_USER_ERROR_MESSAGE = "User was not found.";
 export const GET_USER_INFORMATION_ERROR_MESSAGE = "You do not have permission to visit this page.";

@@ -1,0 +1,3 @@
+
+export const CONFIRMATION_MODAL_CANCEL_BUTTON_TEXT = "Cancel";
+export const CONFIRMATION_MODAL_DELETE_BUTTON_TEXT = "Delete";

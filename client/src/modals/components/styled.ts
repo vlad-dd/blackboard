@@ -1,9 +1,11 @@
 import { Box, Typography } from "@mui/material";
+import { FormControlLabel } from "@mui/material";
 import styled from "styled-components";
 
 export const StyledCardFormBox = styled(Box)`
   position: absolute;
   top: 50%;
+  color: black;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
@@ -19,3 +21,7 @@ export const StyledCardFormBox = styled(Box)`
 export const StyledCardHeaderTitle = styled(Typography)`
   color: black;
 `
+
+export const StyledFormControlLabel = styled(FormControlLabel)`
+  color: black;
+`;

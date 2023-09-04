@@ -5,6 +5,7 @@ import { authUserSelector } from '../../../../store/selectors';
 import { DesignStar } from '../../../../common'
 import { useListOptionsWidget } from './widgets';
 import { MenuDrawer, MenuButton } from './components';
+import { DASHBOARD_HEADER_STAR_COLOR, DASHBOARD_HEADER_TITLE } from "./constants";
 import {
     StyledDashboardAvatarContainer,
     StyledDashboardHeader,
@@ -17,12 +18,14 @@ const DashboardHeader = () => {
     const dispatch = useDispatch();
     const { open, state, anchorEl, list, handleClick, handleClose, toggleDrawer } = useListOptionsWidget();
     const { user: { email, fullName, avatarUrl, ...other } } = useSelector(authUserSelector);
-    
+
     return (
         <StyledDashboardHeaderContainer>
             <StyledDashboardHeader>
-                <DesignStar color="#B388FF" />
-                <StyledDashboardTitle>Content ideas</StyledDashboardTitle>
+                <DesignStar color={DASHBOARD_HEADER_STAR_COLOR} />
+                <StyledDashboardTitle>
+                    {DASHBOARD_HEADER_TITLE}
+                </StyledDashboardTitle>
             </StyledDashboardHeader>
 
             <StyledDashboardAvatarContainer>

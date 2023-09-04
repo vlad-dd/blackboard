@@ -1,47 +1,71 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { size } from "lodash-es";
-import { cardFormModalStateSelector } from "../../../../store/selectors";
+import { cardFormModalStateSelector, plannerCardsSelector } from "../../../../store/selectors";
 import { setUpdateNotification } from "../../../../store/reducers/planner-cards";
 import { closeApplicationAlertModal, showApplicationAlertModal } from "../../../../store/reducers/popups/application_alert";
 import { API } from "../../../../api";
 import { closeCardFormModal } from "../../../../store/reducers/modals/card_form";
-import { MAX_DESCRIPTION_LENGTH, MAX_TASK_LENGTH } from "../constants";
 import { getToken } from "../../../../utils";
-import { UPDATE_NOTIFICATIONS } from "../../../../global/constants";
+import { ALERT_STATUS, UPDATE_NOTIFICATIONS } from "../../../../global/constants";
+import { setGlobalError } from "../../../../store/reducers/global-error";
+import {
+    PLANNER_CARD_CREATION_SUCCESS_MESSAGE,
+    PLANNER_SECTION_CREATION_SUCCESS_MESSAGE,
+    MAX_DESCRIPTION_LENGTH,
+    MAX_TASK_LENGTH
+} from "../constants";
 
 export const useCardFormModalWidget = () => {
-    const { isOpen } = useSelector(cardFormModalStateSelector);
     const dispatch = useDispatch();
-    const [task, setTitle] = useState("");
+    const { isOpen } = useSelector(cardFormModalStateSelector);
+    const { cards, selectedSectionId } = useSelector(plannerCardsSelector);
+    const [showCreateNewSectionInput, setShowCreateNewSectionInput] = useState(false);
+    const [task, setTask] = useState("");
     const [description, setDescription] = useState("");
-    const isDisabled = !task || size(task) > MAX_TASK_LENGTH || size(description) > MAX_DESCRIPTION_LENGTH;
+    const [section, setSection] = useState('');
+    const [placeholder, setPlaceholder] = useState("");
+    const basicIsDisabledConfugiration = size(task) > MAX_TASK_LENGTH || size(description) > MAX_DESCRIPTION_LENGTH;
+    const isDisabled = showCreateNewSectionInput ? (!task || !section || basicIsDisabledConfugiration) : (!task || !placeholder || basicIsDisabledConfugiration);
 
     const savePlannerCardToDB = async () => {
         try {
-            await API.createPlannerCard(getToken(), { task, description });
-            dispatch(setUpdateNotification(UPDATE_NOTIFICATIONS.SUCCESS));
-            dispatch(showApplicationAlertModal({ message: "Planner card was created!", role: "success" }));
+            if (!showCreateNewSectionInput) {
+                await API.createPlannerCard(getToken(), { _id: selectedSectionId, section, task, description });
+                dispatch(setUpdateNotification(UPDATE_NOTIFICATIONS.SUCCESS));
+                dispatch(showApplicationAlertModal({ message: PLANNER_CARD_CREATION_SUCCESS_MESSAGE, role: ALERT_STATUS.SUCCESS }));
+            } else {
+                await API.createPlannerCard(getToken(), { section, task, description });
+                dispatch(setUpdateNotification(UPDATE_NOTIFICATIONS.SUCCESS));
+                dispatch(showApplicationAlertModal({ message: PLANNER_SECTION_CREATION_SUCCESS_MESSAGE, role: ALERT_STATUS.SUCCESS }));
+            }
         } catch (error) {
-            console.log("error", error)
+            dispatch(setGlobalError(error));
         }
         finally {
             dispatch(closeCardFormModal());
-            setTimeout(() => dispatch(closeApplicationAlertModal()), 1500);
+            setTimeout(() => dispatch(closeApplicationAlertModal()), ALERT_STATUS.DELAY);
         }
     }
 
     useEffect(() => {
-        setTitle("");
+        setTask("");
         setDescription("");
     }, [isOpen]);
 
     return {
         isOpen,
+        cards,
+        showCreateNewSectionInput,
+        section,
+        placeholder,
         isDisabled,
         dispatch,
-        setTitle,
+        setSection,
+        setShowCreateNewSectionInput,
+        setTask,
         setDescription,
+        setPlaceholder,
         savePlannerCardToDB
     };
 };

@@ -5,8 +5,10 @@ import { setUpdateNotification } from "../../../../../../../store/reducers/plann
 import { closeApplicationAlertModal, showApplicationAlertModal } from "../../../../../../../store/reducers/popups/application_alert";
 import { openEditCardInformationFormModal, saveSelectedCardId } from "../../../../../../../store/reducers/modals/edit_card_information_form";
 import { getToken } from "../../../../../../../utils";
+import { ALERT_STATUS, UPDATE_NOTIFICATIONS } from "../../../../../../../global/constants";
+import { DELETE_PLANNER_CARD_ERROR_MESSAGE, DELETE_PLANNER_CARD_SUCCESS_MESSAGE } from "../../../constants";
 
-export const usePlannerCardWidget = (_id) => {
+export const usePlannerCardWidget = (sectionId, _id) => {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -26,15 +28,15 @@ export const usePlannerCardWidget = (_id) => {
         },
         delete: async () => {
             try {
-                await API.deletePlannerCard(getToken(), _id);
-                dispatch(setUpdateNotification("Success"));
-                dispatch(showApplicationAlertModal({ message: "Planner card was deleted successfully!", role: "success" }));
+                await API.deletePlannerCard(getToken(), sectionId, _id);
+                dispatch(setUpdateNotification(UPDATE_NOTIFICATIONS.SUCCESS));
+                dispatch(showApplicationAlertModal({ message: DELETE_PLANNER_CARD_SUCCESS_MESSAGE, role: ALERT_STATUS.SUCCESS }));
             } catch (error) {
-                dispatch(showApplicationAlertModal({ message: "You are not able to delete this planner card!", role: "error" }));
+                dispatch(showApplicationAlertModal({ message: DELETE_PLANNER_CARD_ERROR_MESSAGE, role: ALERT_STATUS.ERROR }));
             }
             finally {
                 closePlannerCardOptionsMenu();
-                setTimeout(() => dispatch(closeApplicationAlertModal()), 1500);
+                setTimeout(() => dispatch(closeApplicationAlertModal()), ALERT_STATUS.DELAY);
             }
         }
     };

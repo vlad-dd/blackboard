@@ -11,19 +11,19 @@ import {
     StyledPlannerCardHeader,
 } from './styled';
 
-const PlannerCard = ({ _id, task, description, createdAt }: IPlannerCard) => {
+const PlannerCard = ({ _id, sectionId, task, description, date }: any) => {
     return (
         <StyledPlannerCardWrapper key={_id}>
             <StyledPlannerCardHeader>
                 <StyledCardCategory>{task}</StyledCardCategory>
-                <PlannerCardMenuOptions selectedCardId={_id} />
+                <PlannerCardMenuOptions sectionId={sectionId} selectedCardId={_id} />
             </StyledPlannerCardHeader>
             <StyledCardDescription>
                 {description}
             </StyledCardDescription>
             <StyledCardDate>
                 <CalendarMonthTwoToneIcon />
-                {dateFormatter(createdAt)}
+                {dateFormatter(date)}
             </StyledCardDate>
         </StyledPlannerCardWrapper>
     )
