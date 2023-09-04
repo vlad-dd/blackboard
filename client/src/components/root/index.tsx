@@ -1,25 +1,33 @@
 import React from 'react';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { Outlet } from 'react-router';
-import Footer from '../footer'
+import { DeniedAccess } from '../../global/errors';
+import { GLOBAL_APPLICATION_ROUTES } from '../../global/routes';
+import { getToken } from '../../utils';
 import Modals from '../../modals';
+import Popups from '../../popups';
+import Footer from '../footer'
+import { useRootWidget } from './widgets';
+import { GLOBAL_ERROR_MESSAGE } from './constants';
 
 const Root = () => {
-  if(!window.localStorage.getItem("token")) {
-    return (
-      <div style={{ textAlign: "center", position: "relative", top: "50vh"}}>
-        <RemoveCircleIcon fontSize="large"/>
-        <div>You have not access to this page.</div>
-      </div>
-    )
-  }
+  const { hasGlobalError, navigate } = useRootWidget();
+
+  if (!getToken()) {
+    navigate(GLOBAL_APPLICATION_ROUTES.LOGIN);
+  };
+
+  if(hasGlobalError){
+    return <DeniedAccess globalError={GLOBAL_ERROR_MESSAGE} />
+  };
+
   return (
     <>
       <Modals />
+      <Popups />
       <Outlet />
       <Footer />
     </>
   )
 }
 
-export default Root
+export default Root;

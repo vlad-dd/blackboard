@@ -1,6 +1,4 @@
-interface IDesignStar { 
-    color: string
- }
+import { IDesignStar } from "../interfaces";
 
 const DesignStar = ({ color }: IDesignStar) => {
     return (

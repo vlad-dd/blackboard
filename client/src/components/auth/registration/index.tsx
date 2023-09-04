@@ -4,6 +4,7 @@ import { Alert, Button } from '@mui/material';
 import { isNil } from "lodash-es";
 import Form from '../form';
 import { useRegistrationWidget } from './use-registration-widget';
+import { INVALID_CREDENTIALS_ERROR_MESSAGE, REGISTRATION_BUTTON_MESSAGE, REGISTRATION_FORM_TITLE } from '../constants';
 
 const Registration = () => {
     const {
@@ -21,8 +22,8 @@ const Registration = () => {
     } = useRegistrationWidget();
 
     return (
-        <Form title="Registration">
-            {!isNil(errors) && <Alert variant="filled" severity="error">Make sure you filled in all the information!</Alert>}
+        <Form title={REGISTRATION_FORM_TITLE}>
+            {!isNil(errors) && <Alert variant="filled" severity="error">{INVALID_CREDENTIALS_ERROR_MESSAGE}</Alert>}
             <TextField
                 fullWidth
                 error={errorObserver("email")}
@@ -63,7 +64,7 @@ const Registration = () => {
                 variant="contained"
                 onClick={(e) => submitForm(e)}
             >
-                Register
+                {REGISTRATION_BUTTON_MESSAGE}
             </Button>
         </Form>
     )

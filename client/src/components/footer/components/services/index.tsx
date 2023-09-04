@@ -1,3 +1,4 @@
+import React from 'react';
 import { Service } from './components';
 import { BLACKBOARD_SERVICES } from '../../constants';
 import {

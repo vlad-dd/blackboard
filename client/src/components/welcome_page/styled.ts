@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 export const StyledWelcomePageContainer = styled.div`
   height: 100%;
@@ -81,15 +82,6 @@ export const StyledSponsorsContainer = styled.div`
    }
 `;
 
-export const StyledImageContainer = styled.div``;
-
-export const StyledImage = styled.img`
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  margin-top: 15px;
-`;
-
 export const StyledExplanationTitle = styled.h3`
   font-family: Inter;
   font-size: 56px;
@@ -127,3 +119,10 @@ export const SponsorsTitle = styled.h1`
 `;
 
 export const StyledSponsorsContainerItem = styled.div``;
+
+export const StyledDarkModeSwitch = styled(DarkModeSwitch)` 
+  margin-bottom: 2rem;
+  position: absolute;
+  right: 30px;
+  top: 20px;
+`;

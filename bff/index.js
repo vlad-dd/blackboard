@@ -6,7 +6,7 @@ import { loginValidator, registerValidator } from "./validators/auth.js";
 import handleValidationErrors from "./middlewares/validationErrors.js";
 import isAuth from "./middlewares/isAuth.js";
 import logger from "./middlewares/logger.js";
-import { createPlannerCard, deletePlannerCard, getAllPlannerCards, updatePlannerCard } from "./controllers/plannercard.js";
+import { createPlannerCard, deletePlannerCard, deleteSection, getAllPlannerCards, updatePlannerCard } from "./controllers/plannercard.js";
 import { DATABASE_CONNECTION_STATUS, SERVER_START_ERROR_NOTIFICATION, SERVER_START_NOTIFICATION } from "./constants.js";
 import { notificate } from "./utils/notificate.js";
 
@@ -27,6 +27,9 @@ app.get("/cards", logger, isAuth, getAllPlannerCards)
 app.post("/cards", logger, isAuth, createPlannerCard);
 app.patch("/cards", logger, isAuth, updatePlannerCard);
 app.delete("/cards", logger, isAuth, deletePlannerCard)
+
+//section
+app.delete("/cards/section", logger, isAuth, deleteSection)
 
 async function runBackendForFrontend() {
     try {

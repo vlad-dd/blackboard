@@ -5,11 +5,18 @@ import { saveAuthUser } from "../../../store/reducers/user";
 import { API } from "../../../api";
 import { setPlannerCards } from "../../../store/reducers/planner-cards";
 import { getToken } from "../../../utils";
+import { setGlobalError } from "../../../store/reducers/global-error";
 
 export const useDashboardWidget = () => {
-    const { cards, updateNotification } = useSelector(plannerCardsSelector);
     const dispatch = useDispatch();
+    const { cards, updateObserver, selectedSectionId } = useSelector(plannerCardsSelector);
+    const [filteredSection, setFilteredSection] = useState<any>();
     const [error, setError] = useState<any>(null);
+
+    useEffect(() => {
+        const filteredCard = cards?.find(({ _id }) => _id === selectedSectionId);
+        setFilteredSection(filteredCard);
+    }, [selectedSectionId, cards]);
 
     useEffect(() => {
         (async () => {
@@ -34,11 +41,15 @@ export const useDashboardWidget = () => {
             } catch (error) {
                 setError(error)
             }
-        })()
-    }, [updateNotification]);
+        })();
+    }, [updateObserver]);
+
+    useEffect(() => {
+       if(!!error) dispatch(setGlobalError(error))
+    }, [error]);
 
     return {
-        cards,
-        error
+        filteredSection,
+        selectedSectionId,
     };
 }

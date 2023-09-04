@@ -1,20 +1,20 @@
-import { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import SendIcon from '@mui/icons-material/Send';
+import { ThemeContext } from '../../contexts/theme';
 import { Circles, Sponsors } from './components';
 import { APPLICATION_DESCRIPTION, APPLICATION_NAME } from './constants';
 import {
+    StyledDarkModeSwitch,
     StyledDescription,
     StyledDescriptionContainer,
-    StyledImage,
-    StyledImageContainer,
     StyledTitle,
     StyledTitleContainer,
     StyledWelcomePageContainer
 } from './styled';
-import { ThemeContext } from '../../contexts/theme';
-import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { Button } from '@mui/material';
 
 const WelcomePage = () => {
-    const { theme, toggleTheme }: any = useContext(ThemeContext);
+    const { theme, toggleTheme } = useContext(ThemeContext)!;
 
     return (
         <StyledWelcomePageContainer>
@@ -25,12 +25,13 @@ const WelcomePage = () => {
             <StyledDescriptionContainer>
                 <StyledDescription>{APPLICATION_DESCRIPTION}</StyledDescription>
             </StyledDescriptionContainer>
-            {/* <StyledImageContainer>
-                <StyledImage src={WELCOME_PAGE_BACKGROUND_IMAGE} />
-            </StyledImageContainer> */}
+            <div style={{ textAlign: "center", padding: "55px" }}>
+                <Button href='/dashboard' variant="contained" endIcon={<SendIcon />}>
+                    Go to your dashboard
+                </Button>
+            </div>
             <Sponsors />
-            <DarkModeSwitch
-                style={{ marginBottom: '2rem', position: "absolute", right: 30, top: 20 }}
+            <StyledDarkModeSwitch
                 checked={theme}
                 onChange={toggleTheme}
                 size={40}
@@ -41,4 +42,4 @@ const WelcomePage = () => {
     )
 }
 
-export default WelcomePage
+export default WelcomePage;

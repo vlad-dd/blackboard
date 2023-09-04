@@ -1,24 +1,32 @@
 import React from "react";
-import { PlannerCard, AddNewPlannerCard, DashboardHeader } from './components';
 import { useDashboardWidget } from "./use-dashboard-widget";
+import {
+    PlannerCard,
+    AddNewPlannerCard,
+    DashboardHeader,
+    PlannerCardSection,
+    SectionActions,
+    EmptyDashboard
+} from './components';
 import {
     StyledDashboardWrapper,
     StyledDashboardContainer
 } from './styled';
 
 const Dashboard = () => {
-    const { cards, error } = useDashboardWidget();
-
-    if(!!error) {
-        return <div>{JSON.stringify(error)}</div>
-    };
-
+    const {
+        filteredSection,
+        selectedSectionId,
+    } = useDashboardWidget();
     return (
         <>
             <StyledDashboardWrapper>
                 <DashboardHeader />
+                <PlannerCardSection section={filteredSection?.section} />
+                <SectionActions selectedSectionId={selectedSectionId} />
                 <StyledDashboardContainer>
-                    {cards?.map((props: any) => <PlannerCard {...props} />)}
+                    {filteredSection?.cards.map((props: any) => <PlannerCard sectionId={filteredSection?._id} {...props} />)}
+                    <EmptyDashboard filteredSection={filteredSection} />
                 </StyledDashboardContainer>
                 <AddNewPlannerCard />
             </StyledDashboardWrapper>

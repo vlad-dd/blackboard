@@ -1,53 +1,57 @@
-import { Box, Modal, Typography } from '@mui/material'
 import React from 'react'
-import CloseIcon from '@mui/icons-material/Close';
-import { useDispatch, useSelector } from 'react-redux';
-import { closeUserProfileModal } from '../../../store/reducers/modals/user_profile';
-import { authUserSelector, userProfileModalStateSelector } from '../../../store/selectors';
-
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    color: "black",
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
+import { Modal, Typography } from '@mui/material'
+import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
+import { dateFormatter } from '../../../utils';
+import { useUserProfileWidget } from './use-user-profile-widget';
+import { USER_PROFILE_MODAL_ACTIVE_CARDS_TEXT } from './constants';
+import {
+    StyledCloseUserProfileIcon,
+    StyledDateContainer,
+    StyledUserProfileAvatar,
+    StyledUserProfileBox,
+    StyledUserProfileContainer,
+    StyledUserProfileInformation
+} from './styled';
 
 const UserProfileModal = () => {
-    const dispatch = useDispatch();
-    const { user: { fullName, email, avatarUrl, createdAt } } = useSelector(authUserSelector);
-    const { isOpen } = useSelector(userProfileModalStateSelector);
+    const {
+        isOpen,
+        avatarUrl,
+        fullName,
+        email,
+        createdAt,
+        cards,
+        closeUserProfile
+    } = useUserProfileWidget();
 
     return (
         <Modal
             open={isOpen}
-            onClose={() => dispatch(closeUserProfileModal())}
+            onClose={closeUserProfile}
         >
-            <Box sx={style}>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <Typography variant="h6" component="h2">
-                        {fullName}
-                    </Typography>
-                    <CloseIcon
-                        style={{ cursor: "pointer" }}
-                        onClick={() => dispatch(closeUserProfileModal())}
-                    />
-                </div>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    {email}
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    <img style={{ height: "300px" }} src={avatarUrl} />
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    {createdAt}
-                </Typography>
-            </Box>
+            <StyledUserProfileBox>
+                <StyledCloseUserProfileIcon
+                    onClick={closeUserProfile}
+                />
+                <StyledUserProfileContainer>
+                    <StyledUserProfileAvatar src={avatarUrl} variant="square" />
+                    <StyledUserProfileInformation>
+                        <Typography variant="h6">
+                            {fullName}
+                        </Typography>
+                        <Typography sx={{ mt: 2 }}>
+                            {email}
+                        </Typography>
+                        <Typography>
+                            {USER_PROFILE_MODAL_ACTIVE_CARDS_TEXT} {cards.length}
+                        </Typography>
+                        <StyledDateContainer sx={{ mt: 2 }}>
+                            <CalendarMonthTwoToneIcon />
+                            {dateFormatter(createdAt)}
+                        </StyledDateContainer>
+                    </StyledUserProfileInformation>
+                </StyledUserProfileContainer>
+            </StyledUserProfileBox>
         </Modal>
     )
 }
