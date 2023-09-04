@@ -9,14 +9,14 @@ import { usePlannerCardWidget } from './use-planner-card-widget';
 import { Divider, IconButton, MenuItem } from '@mui/material';
 import { PLANNER_CARD_MENU_OPTIONS } from '../../constants';
 
-const PlannerCardMenuOptions = ({ selectedCardId }) => {
+const PlannerCardMenuOptions = ({ sectionId, selectedCardId }) => {
     const {
         anchorEl,
         open,
         plannerCardFunctional,
         openPlannerCardOptionsMenu,
         closePlannerCardOptionsMenu
-    } = usePlannerCardWidget(selectedCardId);
+    } = usePlannerCardWidget(sectionId, selectedCardId);
     return (
         <>
             <IconButton>
@@ -39,7 +39,7 @@ const PlannerCardMenuOptions = ({ selectedCardId }) => {
                 }}>
                 <MenuItem disabled disableRipple>
                     <DoneIcon />
-                    Mark as done
+                    {PLANNER_CARD_MENU_OPTIONS.MARK_AS_DONE}
                 </MenuItem>
                 <MenuItem onClick={plannerCardFunctional.edit} disableRipple>
                     <EditIcon />

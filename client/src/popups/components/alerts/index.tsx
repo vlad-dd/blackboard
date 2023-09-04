@@ -1,6 +1,6 @@
-import { Alert, Snackbar } from '@mui/material';
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { Alert, Snackbar } from '@mui/material';
 import { applicationAlertStateSelector } from '../../../store/selectors';
 
 const AlertsPopup = () => {

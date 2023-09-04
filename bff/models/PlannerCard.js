@@ -1,13 +1,24 @@
 import mongoose from "mongoose";
 
 const PlannerCardSchema = new mongoose.Schema({
-    task: {
+    section: {
         type: String,
-        required: true,
+        required: true
     },
-    description: {
-        type: String,
-    },
+    cards: [
+        {
+            task: {
+                type: String,
+                required: true,
+            },
+            description: {
+                type: String,
+            },
+            date: {
+                type: String
+            }
+        }
+    ],
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
