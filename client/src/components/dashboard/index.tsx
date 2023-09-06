@@ -1,17 +1,19 @@
 import React from "react";
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { size } from "lodash-es";
 import { useDashboardWidget } from "./use-dashboard-widget";
 import {
     PlannerCard,
     AddNewPlannerCard,
     DashboardHeader,
-    PlannerCardSection,
     SectionActions,
-    EmptyDashboard
+    DashboardErrorPage
 } from './components';
 import {
     StyledDashboardWrapper,
     StyledDashboardContainer
 } from './styled';
+import { EMPTY_DASHBOARD_DESCRIPTION, EMPTY_DASHBOARD_TITLE, EMPTY_SECTION_DESCRIPTION, EMPTY_SECTION_TITLE } from "./components/empty-dashboard/constants";
 
 const Dashboard = () => {
     const {
@@ -22,11 +24,13 @@ const Dashboard = () => {
         <>
             <StyledDashboardWrapper>
                 <DashboardHeader />
-                <PlannerCardSection section={filteredSection?.section} />
                 <SectionActions selectedSectionId={selectedSectionId} />
                 <StyledDashboardContainer>
                     {filteredSection?.cards.map((props: any) => <PlannerCard sectionId={filteredSection?._id} {...props} />)}
-                    <EmptyDashboard filteredSection={filteredSection} />
+                    <DashboardErrorPage
+                        selectedSectionId={selectedSectionId}
+                        filteredSection={filteredSection}
+                    />
                 </StyledDashboardContainer>
                 <AddNewPlannerCard />
             </StyledDashboardWrapper>

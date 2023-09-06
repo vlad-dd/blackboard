@@ -28,7 +28,7 @@ const useListOptionsWidget = () => {
 
                 setState({ ...state, [anchor]: open });
             };
-            
+
     const list = (anchor: Anchor) => (
         <Box
             sx={{ width: 250 }}
@@ -65,15 +65,14 @@ const useListOptionsWidget = () => {
     );
 
     return {
-        list, 
+        list,
         open,
         state,
         anchorEl,
         toggleDrawer,
         handleClick,
         handleClose
-    }
-
-}
+    };
+};
 
 export default useListOptionsWidget;
