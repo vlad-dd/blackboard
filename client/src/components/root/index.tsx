@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { Outlet } from 'react-router';
 import { DeniedAccess } from '../../global/errors';
 import { GLOBAL_APPLICATION_ROUTES } from '../../global/routes';
@@ -12,9 +12,11 @@ import { GLOBAL_ERROR_MESSAGE } from './constants';
 const Root = () => {
   const { hasGlobalError, navigate } = useRootWidget();
 
-  if (!getToken()) {
-    navigate(GLOBAL_APPLICATION_ROUTES.LOGIN);
-  };
+  useEffect(() => {
+    if (!getToken()) {
+      navigate(GLOBAL_APPLICATION_ROUTES.LOGIN);
+    };
+  }, []);
 
   if(hasGlobalError){
     return <DeniedAccess globalError={GLOBAL_ERROR_MESSAGE} />

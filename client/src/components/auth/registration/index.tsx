@@ -3,7 +3,9 @@ import TextField from '@mui/material/TextField';
 import { Alert, Button } from '@mui/material';
 import { isNil } from "lodash-es";
 import Form from '../form';
+import { GLOBAL_APPLICATION_ROUTES } from '../../../global/routes';
 import { useRegistrationWidget } from './use-registration-widget';
+import { NavigationalBlock } from '../components';
 import { INVALID_CREDENTIALS_ERROR_MESSAGE, REGISTRATION_BUTTON_MESSAGE, REGISTRATION_FORM_TITLE } from '../constants';
 
 const Registration = () => {
@@ -66,6 +68,11 @@ const Registration = () => {
             >
                 {REGISTRATION_BUTTON_MESSAGE}
             </Button>
+            <NavigationalBlock
+                supportText="Already have an account?"
+                route={GLOBAL_APPLICATION_ROUTES.LOGIN}
+                action="Sign In"
+            />
         </Form>
     )
 }

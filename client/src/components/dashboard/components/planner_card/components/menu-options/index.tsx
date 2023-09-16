@@ -14,6 +14,7 @@ const PlannerCardMenuOptions = ({ sectionId, selectedCardId }) => {
         anchorEl,
         open,
         plannerCardFunctional,
+        deletePlannerCardWithConfirmationPopup,
         openPlannerCardOptionsMenu,
         closePlannerCardOptionsMenu
     } = usePlannerCardWidget(sectionId, selectedCardId);
@@ -50,7 +51,7 @@ const PlannerCardMenuOptions = ({ sectionId, selectedCardId }) => {
                     <ArchiveIcon />
                     {PLANNER_CARD_MENU_OPTIONS.ARCHIVE}
                 </MenuItem>
-                <MenuItem onClick={plannerCardFunctional.delete}
+                <MenuItem onClick={deletePlannerCardWithConfirmationPopup}
                     disableRipple
                 >
                     <DeleteIcon />
