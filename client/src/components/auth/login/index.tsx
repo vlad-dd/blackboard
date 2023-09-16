@@ -1,8 +1,10 @@
 import React from 'react'
 import { Alert, Button, TextField } from '@mui/material'
 import { isNil } from "lodash-es";
+import { GLOBAL_APPLICATION_ROUTES } from '../../../global/routes';
 import Form from '../form'
 import { useLoginWidget } from './use-login-widget';
+import { NavigationalBlock } from '../components';
 import {
     INVALID_CREDENTIALS_ERROR,
     INVALID_CREDENTIALS_ERROR_MESSAGE,
@@ -44,7 +46,11 @@ const Login = () => {
             >
                 {LOGIN_BUTTON_MESSAGE}
             </Button>
-
+            <NavigationalBlock
+                supportText="Do not have an account?"
+                route={GLOBAL_APPLICATION_ROUTES.REGISTRATION}
+                action="Sign Up"
+            />
         </Form>
     )
 }

@@ -14,3 +14,7 @@ export const StyledFormWrapper = styled.div`
 export const StyledActionTitle = styled.h1`
   text-align: center;
 `;
+
+export const StyledNavigationalBlockWrapper = styled.div`
+  text-align: center;
+`;

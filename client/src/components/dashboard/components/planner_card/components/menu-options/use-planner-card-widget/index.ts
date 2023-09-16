@@ -7,6 +7,7 @@ import { openEditCardInformationFormModal, saveSelectedCardId } from "../../../.
 import { getToken } from "../../../../../../../utils";
 import { ALERT_STATUS, UPDATE_NOTIFICATIONS } from "../../../../../../../global/constants";
 import { DELETE_PLANNER_CARD_ERROR_MESSAGE, DELETE_PLANNER_CARD_SUCCESS_MESSAGE } from "../../../constants";
+import { openActionConfirmationModalAndSetConfiguration } from "../../../../../../../store/reducers/modals/confirmation";
 
 export const usePlannerCardWidget = (sectionId, _id) => {
     const dispatch = useDispatch();
@@ -41,10 +42,15 @@ export const usePlannerCardWidget = (sectionId, _id) => {
         }
     };
 
+    const deletePlannerCardWithConfirmationPopup = () => {
+        dispatch(openActionConfirmationModalAndSetConfiguration({ message: "Do you really want to delete this planner card?", action: plannerCardFunctional.delete }));
+    };
+
     return {
         anchorEl,
         open,
         plannerCardFunctional,
+        deletePlannerCardWithConfirmationPopup,
         openPlannerCardOptionsMenu,
         closePlannerCardOptionsMenu
     };

@@ -1,6 +1,4 @@
 import React from 'react';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { EMPTY_DASHBOARD_DESCRIPTION, EMPTY_DASHBOARD_TITLE } from './constants';
 import {
     StyledEmptyDashboardContainer,
     StyledEmptyDashboardDescription,
@@ -8,16 +6,16 @@ import {
     StyledEmptyDashboardWrapper
 } from './styled';
 
-const EmptyDashboard = ({ filteredSection }: any) => {
-    return !filteredSection && (
+const EmptyDashboard = ({ title, description, Icon }: any) => {
+    return (
         <StyledEmptyDashboardWrapper>
-            <RemoveCircleIcon fontSize="large" />
+            <Icon fontSize="large" />
             <StyledEmptyDashboardContainer>
                 <StyledEmptyDashboardTitle>
-                    {EMPTY_DASHBOARD_TITLE}
+                    {title}
                 </StyledEmptyDashboardTitle>
                 <StyledEmptyDashboardDescription>
-                    {EMPTY_DASHBOARD_DESCRIPTION}
+                    {description}
                 </StyledEmptyDashboardDescription>
             </StyledEmptyDashboardContainer>
         </StyledEmptyDashboardWrapper>
