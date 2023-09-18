@@ -12,21 +12,21 @@ export const initialState: IinitialState = {
     role: ""
 };
 
-const applicationAlertModalSlice = createSlice({
+const applicationAlertPopupSlice = createSlice({
     name: 'APPLICATION_ALERT_MODAL',
     initialState,
     reducers: {
-        showApplicationAlertModal: (state, { payload: { message, role } }) => {
+        showApplicationAlertPopup: (state, { payload: { message, role } }) => {
             return { ...state, isOpen: true, message, role };
         },
-        closeApplicationAlertModal: (state,) => {
+        closeApplicationAlertPopup: (state,) => {
             return { ...state, isOpen: false,};
         }
     }
 });
 
-export const { actions, reducer } = applicationAlertModalSlice;
-export const { showApplicationAlertModal, closeApplicationAlertModal } = actions;
+export const { actions, reducer } = applicationAlertPopupSlice;
+export const { showApplicationAlertPopup, closeApplicationAlertPopup } = actions;
 
 
-export default applicationAlertModalSlice;
+export default applicationAlertPopupSlice;
