@@ -33,9 +33,7 @@ const ConfirmationModal = () => {
             <StyledConfirmationButtonContainer>
               <StyledButton
                 variant="outlined"
-                onClick={() => {
-                  dispatch(closeActionConfirmationModal());
-                }}
+                onClick={() => dispatch(closeActionConfirmationModal())}
               >
                 {CONFIRMATION_MODAL_CANCEL_BUTTON_TEXT}
               </StyledButton>
@@ -45,7 +43,6 @@ const ConfirmationModal = () => {
                 onClick={() => {
                   action();
                   dispatch(closeActionConfirmationModal());
-                  dispatch(setSelectedSectionId(null));
                 }}
               >
                 {CONFIRMATION_MODAL_DELETE_BUTTON_TEXT}
