@@ -13,7 +13,7 @@ export const cardsFilterModalStateSelector = (state: any) => getState(state).car
 
 export const editCardModalStateSelector = (state: any) => getState(state).editCardInformationFormModal;
 
-export const applicationAlertStateSelector = (state: any) => getState(state).applicationAlertModalSlice;
+export const applicationAlertStateSelector = (state: any) => getState(state).applicationAlertPopupSlice;
 
 export const globalErrorStateSelector = (state: any) => getState(state).globalErrorSlice;
 

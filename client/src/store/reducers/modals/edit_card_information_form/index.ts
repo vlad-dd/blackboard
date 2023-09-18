@@ -21,7 +21,6 @@ const editCardInformationFormModalSlice = createSlice({
             return { ...state, isOpen: false };
         },
         saveSelectedCardId: (state, { payload }) => {
-            console.log("payload", payload);
             return { ...state, selectedCardId: payload }
         }
     }

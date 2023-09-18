@@ -5,7 +5,7 @@ import { editCardModalStateSelector, plannerCardsSelector } from "../../../../st
 import { API } from "../../../../api";
 import { getToken } from "../../../../utils";
 import { setUpdateNotification } from "../../../../store/reducers/planner-cards";
-import { closeApplicationAlertModal, showApplicationAlertModal } from "../../../../store/reducers/popups/application_alert";
+import { closeApplicationAlertPopup, showApplicationAlertPopup } from "../../../../store/reducers/popups/application_alert";
 import { closeEditCardInformationFormModal } from "../../../../store/reducers/modals/edit_card_information_form";
 import { ALERT_STATUS, UPDATE_NOTIFICATIONS } from "../../../../global/constants";
 import { EDIT_CARD_MODAL_ERORR_MESSAGE, EDIT_CARD_MODAL_SUCCESS_MESSAGE } from "../constants";
@@ -33,14 +33,14 @@ export const useEditCardFormWidget = () => {
         try {
             await API.updatePlannerCard(getToken(), { selectedSectionId, selectedCardId, task, description });
             dispatch(setUpdateNotification(UPDATE_NOTIFICATIONS.SUCCESS));
-            dispatch(showApplicationAlertModal({ message: EDIT_CARD_MODAL_SUCCESS_MESSAGE, role: ALERT_STATUS.SUCCESS }))
+            dispatch(showApplicationAlertPopup({ message: EDIT_CARD_MODAL_SUCCESS_MESSAGE, role: ALERT_STATUS.SUCCESS }))
 
         } catch (error) {
-            dispatch(showApplicationAlertModal({ message: EDIT_CARD_MODAL_ERORR_MESSAGE, role: ALERT_STATUS.ERROR }))
+            dispatch(showApplicationAlertPopup({ message: EDIT_CARD_MODAL_ERORR_MESSAGE, role: ALERT_STATUS.ERROR }))
         }
         finally {
             closeEditFormModal();
-            setTimeout(() => dispatch(closeApplicationAlertModal()), ALERT_STATUS.DELAY);
+            setTimeout(() => dispatch(closeApplicationAlertPopup()), ALERT_STATUS.DELAY);
         }
     }
 
