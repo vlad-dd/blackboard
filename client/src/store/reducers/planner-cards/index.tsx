@@ -16,7 +16,6 @@ const plannerCardsSlice = createSlice({
     initialState,
     reducers: {
         setPlannerCards: (state, { payload }) => {
-            console.log("D", payload)
             return { ...state, cards: [...payload]};
         },
         setUpdateNotification: (state, { payload }) => {

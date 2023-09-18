@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { size } from "lodash-es";
 import { cardFormModalStateSelector, plannerCardsSelector } from "../../../../store/selectors";
 import { setUpdateNotification } from "../../../../store/reducers/planner-cards";
-import { closeApplicationAlertModal, showApplicationAlertModal } from "../../../../store/reducers/popups/application_alert";
+import { closeApplicationAlertPopup, showApplicationAlertPopup } from "../../../../store/reducers/popups/application_alert";
 import { API } from "../../../../api";
 import { closeCardFormModal } from "../../../../store/reducers/modals/card_form";
 import { getToken } from "../../../../utils";
@@ -33,18 +33,18 @@ export const useCardFormModalWidget = () => {
             if (!showCreateNewSectionInput) {
                 await API.createPlannerCard(getToken(), { _id: selectedSectionId, section, task, description });
                 dispatch(setUpdateNotification(UPDATE_NOTIFICATIONS.SUCCESS));
-                dispatch(showApplicationAlertModal({ message: PLANNER_CARD_CREATION_SUCCESS_MESSAGE, role: ALERT_STATUS.SUCCESS }));
+                dispatch(showApplicationAlertPopup({ message: PLANNER_CARD_CREATION_SUCCESS_MESSAGE, role: ALERT_STATUS.SUCCESS }));
             } else {
                 await API.createPlannerCard(getToken(), { section, task, description });
                 dispatch(setUpdateNotification(UPDATE_NOTIFICATIONS.SUCCESS));
-                dispatch(showApplicationAlertModal({ message: PLANNER_SECTION_CREATION_SUCCESS_MESSAGE, role: ALERT_STATUS.SUCCESS }));
+                dispatch(showApplicationAlertPopup({ message: PLANNER_SECTION_CREATION_SUCCESS_MESSAGE, role: ALERT_STATUS.SUCCESS }));
             }
         } catch (error) {
             dispatch(setGlobalError(error));
         }
         finally {
             dispatch(closeCardFormModal());
-            setTimeout(() => dispatch(closeApplicationAlertModal()), ALERT_STATUS.DELAY);
+            setTimeout(() => dispatch(closeApplicationAlertPopup()), ALERT_STATUS.DELAY);
         }
     }
 
