@@ -13,7 +13,6 @@ import {
     StyledDashboardWrapper,
     StyledDashboardContainer
 } from './styled';
-import { EMPTY_DASHBOARD_DESCRIPTION, EMPTY_DASHBOARD_TITLE, EMPTY_SECTION_DESCRIPTION, EMPTY_SECTION_TITLE } from "./components/empty-dashboard/constants";
 
 const Dashboard = () => {
     const {
